@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola, Yesni💜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f1e3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100vw;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 1.8em;
+            color: #2c3e50;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .yes-button, .no-button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .yes-button {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .no-button {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .said-yes {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .said-yes h1 {
+            color: #2c3e50;
+            width: auto;
+            padding-left: -4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .yes-button, .no-button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            h1 {
+                font-size: 1.2em;
+            }
+
+            .yes-button, .no-button {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¿Quieres ser mi Valentín Elizalde?🤠💜</h1>
+        <div class="buttons">
+            <button class="yes-button" onclick="handleYesClick()">Sí 💜</button>
+            <button class="no-button" onclick="handleNoClick()">No ❌</button>
+        </div>
+        <div class="said-yes" id="said-yes">
+            <!-- <h1>¡Aquí tienes un video de gatitos! 😻</h1> -->
+            <video id="video-player" width="auto" height="auto" controls>
+                <source src="videoplayback.mp4" type="video/mp4">
+                Tu navegador no soporta videos en HTML5.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        let messageIndex = 0;
+        const messages = [
+            "¿estás segura?❌",
+            "noooooo, no me digas que nooooo❌",
+            "de verdaddddd que noooo?❌",
+            "no me diga eso💔"
+        ];
+
+        function handleNoClick() {
+            const noButton = document.querySelector(".no-button");
+            const yesButton = document.querySelector(".yes-button");
+
+            // Cambia el texto del botón "No"
+            noButton.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+
+            // Aumenta el tamaño del botón "Sí"
+            let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = `${currentSize * 1.4}px`;
+        }
+
+        function handleYesClick() {
+            const saidYesDiv = document.getElementById("said-yes");
+            const video = document.getElementById("video-player");
+
+            // Mostrar el div del video
+            saidYesDiv.style.display = "block";
+
+            // Iniciar la reproducción automáticamente
+            video.play();
+        }
+    </script>
+
+</body>
+</html>
